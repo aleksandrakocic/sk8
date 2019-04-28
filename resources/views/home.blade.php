@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    this is the home page
+                    
+                    <products-component></products-component>
+
+                
                 </div>
             </div>
         </div>

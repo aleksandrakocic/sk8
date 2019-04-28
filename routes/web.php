@@ -17,7 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::resource('products', 'ProductController');
+Route::get('products', 'ProductController@index')->name('products');
+// Route::get('products', 'ProductController@index')->name('productslist'); prvo napravi productlist
+Route::get('products', 'ProductController@index')->name('productslist');
 
 
-Route::get('/home', 'ApiProductController@index')->name('home');
-// , 'HomeController@index')->name('home');
+// ovo mi je za orders
+Route::resource('orders', 'OrdersController');
+Route::get('orders', 'ProductController@index')->name('orders');
+
+

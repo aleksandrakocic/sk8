@@ -9,6 +9,7 @@ use App\Product;
 class ApiProductController extends Controller
 {
     public function index() {
+
         $products = Product::get();
         $user = \Auth::id();
         return response()->json($products);

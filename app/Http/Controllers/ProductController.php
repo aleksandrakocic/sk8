@@ -12,14 +12,21 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $products = Product::get();
         // dd($products);
-       return view('products', compact('product'));
-
-
+       return view('products', compact('products'));
     }
+
+
+    // public function index()
+    // {
+    //     return response()->json(Product::all(),200);
+    // }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -57,7 +64,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return response()->json($product,200);
     }
 
     /**

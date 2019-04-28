@@ -14,7 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Order::with(['product'])->get(),200);
     }
 
     /**
@@ -35,7 +35,18 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = Order::create([
+            'product_id' => $request->product_id,
+            'user_id' => Auth::id(),
+            'quantity' => $request->quantity,
+            'address' => $request->address
+        ]);
+
+        return response()->json([
+            'status' => (bool) $order,
+            'data'   => $order,
+            'message' => $order ? 'Order is created' : 'Order is not created'
+        ]);
     }
 
     /**
@@ -46,7 +57,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return response()->json($order,200);
     }
 
     /**
@@ -80,6 +91,11 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
-    }
+        $status = $order->delete();
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'order is deleted sucessfuly' : 'order is not deleted sucessfuly'
+        ]);
+        }
 }
